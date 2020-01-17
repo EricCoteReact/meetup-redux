@@ -8,7 +8,7 @@ import { VisibilityFilters } from './visibility-filters';
 export default class Todos extends Component {
   state = {
     todos: [],
-    visibilityFilter: VisibilityFilters.SHOW_ALL //"SHOW_COMPLETED", "SHOW_ACTIVE"
+    visibilityFilter: VisibilityFilters.SHOW_ALL, //"SHOW_COMPLETED", "SHOW_ACTIVE"
   };
   currentId = 4;
 
@@ -16,7 +16,13 @@ export default class Todos extends Component {
     this.setState({
       todos: this.state.todos.map(todo =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+      ),
+    });
+  };
+
+  deleteTodo = id => {
+    this.setState({
+      todos: this.state.todos.filter(todo => todo.id !== id),
     });
   };
 
@@ -27,9 +33,9 @@ export default class Todos extends Component {
         {
           id: this.currentId++,
           text: todoText,
-          completed: false
-        }
-      ]
+          completed: false,
+        },
+      ],
     });
   };
 
@@ -48,6 +54,7 @@ export default class Todos extends Component {
           todos={this.state.todos}
           visibilityFilter={this.state.visibilityFilter}
           onToggleTodo={this.toggleTodo}
+          onDeleteTodo={this.deleteTodo}
         />
       </div>
     );

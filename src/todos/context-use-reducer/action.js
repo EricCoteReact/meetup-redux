@@ -11,8 +11,12 @@ export function editTodo(id, newText) {
   return { type: 'EDIT_TODO', id, text: newText };
 }
 
+export function deleteTodo(id) {
+  return { type: 'DELETE_TODO', id };
+}
+
 export const VisibilityFilters = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
-  SHOW_ACTIVE: 'SHOW_ACTIVE'
+  SHOW_ACTIVE: 'SHOW_ACTIVE',
 };

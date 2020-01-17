@@ -8,8 +8,8 @@ export default function reducer(todos, action) {
         {
           id: currentId++,
           text: action.text,
-          completed: false
-        }
+          completed: false,
+        },
       ];
     case 'TOGGLE_TODO':
       return todos.map(todo =>
@@ -19,6 +19,10 @@ export default function reducer(todos, action) {
       return todos.map(todo =>
         todo.id === action.id ? { ...todo, text: action.text } : todo
       );
+
+    case 'DELETE_TODO':
+      return todos.filter(todo => todo.id !== action.id);
+
     default:
       return todos;
   }
